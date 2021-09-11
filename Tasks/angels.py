@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands, tasks
+import re
+import json
 
 from Functions import Angels
 
@@ -11,9 +13,29 @@ class AngelCounter(commands.Cog):
     @commands.Cog.listener(name="on_message")
     async def increment_angels(self,ctx):
 
-        await Angels.increment_angels(ctx, 1)
+        if ctx.author.bot:
 
-        print(f"{await Angels.get_angel_count(ctx)}")
+            return
+
+        with open("badwords.json", "r") as f:
+
+            badwords = json.load(f)
+
+            badwords = badwords["badwords"]
+
+        kills = 0
+
+        for word in badwords:
+
+            words = re.findall(word, ctx.content.lower())
+
+            kills += len(words)
+
+        if kills > 0:
+
+            await Angels.increment_angels(ctx, kills)
+
+            print(f"{ctx.author} killed an angel. They have killed {await Angels.get_angel_count(ctx)} so far.")
 
 def setup(bot):
 

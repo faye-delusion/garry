@@ -33,7 +33,7 @@ async def increment_angels(ctx, amount):
 
     file = await generate_user_info(ctx.author.id)
 
-    file[str(ctx.author.id)]["angels"] += 1
+    file[str(ctx.author.id)]["angels"] += amount
 
     with open("users.json", "w") as f:
 

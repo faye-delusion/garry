@@ -13,6 +13,19 @@ with open("./config.json", "r") as f:
     config = json.load(f)
 
 
+# generates badwords.json if it doesnt already exist
+
+try:
+
+    open("badwords.json")
+
+except:
+
+    with open("badwords.json", "w") as f:
+
+        json.dump({"badwords": []}, f, indent=4)
+
+
 # Init the actual bot
 
 intents = intents = discord.Intents.all()

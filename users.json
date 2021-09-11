@@ -3,19 +3,19 @@
         "xp": 0,
         "level": 0,
         "prestige": 0,
-        "angels": 10000005
+        "angels": 10000018
     },
     "884598879239143434": {
         "xp": 0,
         "level": 0,
         "prestige": 0,
-        "angels": 2
+        "angels": 5
     },
     "507158060956123150": {
         "xp": 0,
         "level": 0,
         "prestige": 0,
-        "angels": 2
+        "angels": 3
     },
     "859775966230609932": {
         "xp": 0,
@@ -46,5 +46,11 @@
         "level": 0,
         "prestige": 0,
         "angels": 0
+    },
+    "859814551368499221": {
+        "xp": 0,
+        "level": 0,
+        "prestige": 0,
+        "angels": 1
     }
 }
