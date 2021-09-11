@@ -49,28 +49,52 @@ async def on_ready():
 
             except commands.ExtensionAlreadyLoaded:
 
-                print(f"{command[:-3]} already loaded")
+                print(f"Command {command[:-3]} already loaded")
 
             except commands.NoEntryPointError:
 
-                print(f"{command[:-3]} has no setup function")
+                print(f"Command {command[:-3]} has no setup function")
 
             except commands.ExtensionFailed:
 
-                print(f"{command[:-3]} threw an exception and could not be loaded")
+                print(f"Command {command[:-3]} threw an exception and could not be loaded")
 
             else:
 
-                print(f"{command[:-3]} loaded successfully")
+                print(f"Command {command[:-3]} loaded successfully")
 
-            embed = discord.Embed(
+        for task in os.listdir("./Tasks"):
 
-                title="Garry Restarted",
-                colour=discord.Colour.random()
+            if task.endswith(".py"):
 
-            )
+                try:
 
-            await log_channel.send(embed=embed)
+                    bot.load_extension(f"Tasks.{task[:-3]}")
+
+                except commands.ExtensionAlreadyLoaded:
+
+                    print(f"Task {task[:-3]} already loaded")
+
+                except commands.NoEntryPointError:
+
+                    print(f"Task {task[:-3]} has no setup function")
+
+                except commands.ExtensionFailed:
+
+                    print(f"Task {task[:-3]} threw an exception and could not be loaded")
+
+                else:
+
+                    print(f"Task {task[:-3]} loaded successfully")
+
+        embed = discord.Embed(
+
+            title="Garry Restarted",
+            colour=discord.Colour.random()
+
+        )
+
+    await log_channel.send(embed=embed)
 
 # Run the bot
 
