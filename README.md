@@ -1,5 +1,9 @@
 # garry
 
+## what is garry
+
+garry is backbone of weedblazers. without garry weedblazers is nothing. garry does it all. we love you garry.
+
 ## how to use:
 
 - pull repo
