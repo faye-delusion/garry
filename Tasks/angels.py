@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands, tasks
 import re
 import json
+import datetime
 
 from Functions import Angels
 
@@ -15,8 +16,12 @@ class AngelCounter(commands.Cog):
 
         self.update_angel_counters.stop()
 
-    @tasks.loop(minutes=5)
+    @tasks.loop(minutes=1)
     async def update_angel_counters(self):
+
+        guild = self.bot.get_guild(817475690499670066)
+
+        # Update values with voice channel IDs
 
         counters = {
 
@@ -26,13 +31,35 @@ class AngelCounter(commands.Cog):
 
         }
 
-        for i in counters.items():
+        global_angels = 0
 
-            channel = i[1]
+        with open("users.json", "r") as f:
 
-            channel = self.bot.get_channel(channel)
+            file = json.load(f) 
 
-            print(channel)
+        for i in guild.members:
+
+            global_angels += file[str(i.id)]["angels"]
+
+        if datetime.datetime.now().strftime("%H:%M") == "00:00" or file.get("angels_killed_today") == None:
+
+            file["angels_killed_today"] = 0
+
+            with open("users.json", "w") as f:
+
+                json.dump(file, f, indent=4)
+
+        killed_today = file["angels_killed_today"]
+
+        highest_kills = max(file, key=file.get)
+
+        highest_kills = await self.bot.fetch_user(highest_kills)
+
+        await self.bot.get_channel(counters["Global"]).edit(name="Angels Killed: {:,}".format(global_angels))
+        await self.bot.get_channel(counters["Today"]).edit(name="Killed Today: {:,}".format(killed_today))
+        
+
+            
 
     @commands.Cog.listener(name="on_message")
     async def increment_angels(self,ctx):
