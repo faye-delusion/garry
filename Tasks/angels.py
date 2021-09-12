@@ -5,6 +5,7 @@ import json
 import datetime
 
 from Functions import Angels
+from Functions import meta
 
 class AngelCounter(commands.Cog):
 
@@ -27,7 +28,6 @@ class AngelCounter(commands.Cog):
 
             "Global": 862279824461529098,
             "Today": 880598351224143892,
-            "Skill210": 862647658271473664
 
         }
 
@@ -38,6 +38,17 @@ class AngelCounter(commands.Cog):
             file = json.load(f) 
 
         for i in guild.members:
+
+            if not str(i.id) in file:
+
+                file[str(i.id)] = {
+
+                    "xp": 0,
+                    "level": 0,
+                    "prestige": 0,
+                    "angels": 0
+
+                }
 
             global_angels += file[str(i.id)]["angels"]
 
@@ -51,14 +62,10 @@ class AngelCounter(commands.Cog):
 
         killed_today = file["angels_killed_today"]
 
-        highest_kills = max(file, key=file.get)
-
-        highest_kills = await self.bot.fetch_user(highest_kills)
-
         await self.bot.get_channel(counters["Global"]).edit(name="Angels Killed: {:,}".format(global_angels))
         await self.bot.get_channel(counters["Today"]).edit(name="Killed Today: {:,}".format(killed_today))
         
-
+        await meta.log("Updated Angel kill counter.")
             
 
     @commands.Cog.listener(name="on_message")
@@ -86,7 +93,7 @@ class AngelCounter(commands.Cog):
 
             await Angels.increment_angels(ctx, kills)
 
-            print(f"{ctx.author} killed an angel. They have killed {await Angels.get_angel_count(ctx)} so far.")
+            await meta.log(f"{ctx.author} killed an angel. They have killed {await Angels.get_angel_count(ctx)} so far.")
 
 def setup(bot):
 

@@ -35,6 +35,8 @@ async def increment_angels(ctx, amount):
 
     file[str(ctx.author.id)]["angels"] += amount
 
+    file["angels_killed_today"] += amount
+
     with open("users.json", "w") as f:
 
         json.dump(file, f, indent=4)
