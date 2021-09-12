@@ -3,6 +3,7 @@
 ## what is garry
 
 garry is backbone of weedblazers. without garry weedblazers is nothing. garry does it all. we love you garry.
+*please note garry is designed specifically around weedblazers itself and there is a good chance you will need to change a lot of shit for the code to work in other servers.
 
 ## how to use:
 
