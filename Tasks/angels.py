@@ -136,15 +136,13 @@ class AngelCounter(commands.Cog):
 
         if not str(user.id) in file:
 
-            file[str(user.id)] = {
+            await Angels.generate_user_info(user.id)
 
-                "xp": 0,
-                "level": 1,
-                "prestige": 0,
-                "angels": 0
-            }
+            kills = 0
 
-        kills = file[str(user.id)]["angels"]
+        else:
+
+            kills = file[str(user.id)]["angels"]
 
         if kills <= 0:
 

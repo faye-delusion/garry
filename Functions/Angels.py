@@ -13,6 +13,7 @@ async def generate_user_info(uid):
             "xp": 0,
             "level": 0,
             "prestige": 0,
+            "pepega_posts": 0,
             "angels": 0
 
         }
