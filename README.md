@@ -22,3 +22,4 @@ garry is backbone of weedblazers. without garry weedblazers is nothing. garry do
 }
 ```
 replace `TOKEN` with your bot token, change the `prefix` to whatever the fuck you want and change `logchannel` to the id of the channel where you want bot logs
+* i will change this to auto generate a config file soon (maybe) 
