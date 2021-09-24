@@ -9,17 +9,24 @@ garry is backbone of weedblazers. without garry weedblazers is nothing. garry do
 ## how to use:
 
 - pull repo
-- create new file config.json
-- add the following to config.json
+- run setup.py
 
+### When running setup.py
+
+- it will ask you for your token, check the code if that unsettles you (scary token oooo)
+- if you fuck anything up during the config setup (wrong token, invalid id for log channel, etc) go into your config.json file
+
+it should look something like this
 ```json
 {
 
-  "token": "TOKEN",
-  "prefix": "!",
-  "logchannel": 1234567890
+  "token": "abcdefghijklmnopqrstuvwxyz",
+  "prefix": "g2",
+  "log_channel": 1234567890
 
 }
 ```
-replace `TOKEN` with your bot token, change the `prefix` to whatever the fuck you want and change `logchannel` to the id of the channel where you want bot logs
-* i will change this to auto generate a config file soon (maybe) (idk)
+
+if the bot does not run at all, check `token`. paste in the new one if you generate one (failed english twice bear with me)
+
+if it runs but nothing logs check `log_channel` and replace if necessary
