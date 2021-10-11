@@ -32,12 +32,20 @@ async def get_angel_count(ctx):
 
 async def increment_angels(ctx, amount):
 
+    with open("global.json", "r") as f:
+
+        file_global = json.load(f)
+
     file = await generate_user_info(ctx.author.id)
 
     file[str(ctx.author.id)]["angels"] += amount
 
-    file["angels_killed_today"] += amount
+    file_global["angels_killed_today"] += amount
 
     with open("users.json", "w") as f:
 
         json.dump(file, f, indent=4)
+
+    with open("global.json", "w") as f:
+
+        json.dump(file_global, f, indent=4)

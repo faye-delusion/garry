@@ -105,4 +105,23 @@ if not os.path.isfile("users.json"):
 
     print("Users generated (see users.json)")
 
+if not os.path.isfile("global.json"):
+
+    print("Generating global.json variable file")
+
+    with open("global.json", "w") as f:
+
+        json.dump(
+
+            {
+
+                "angels_killed_today": 0,
+                "pepega_count": 0
+
+            },
+            f,
+            indent=4
+
+        )
+
 print("Setup complete. Run bot.py to start bot.")

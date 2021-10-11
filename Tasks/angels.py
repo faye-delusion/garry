@@ -8,6 +8,12 @@ import random
 from Functions import Angels
 from Functions import meta
 
+# +++++++++++++++++++++++++++++++++++++++
+#   Channel Configuration Variables (update as required)
+guild = 895428129961684993
+global_angel_kills = 895428130062352409
+daily_angel_kills = 896976891863498753
+
 class AngelCounter(commands.Cog):
 
     def __init__(self,bot):
@@ -21,14 +27,14 @@ class AngelCounter(commands.Cog):
     @tasks.loop(minutes=1)
     async def update_angel_counters(self):
 
-        guild = self.bot.get_guild(817475690499670066)
+        guild = self.bot.get_guild(895428129961684993)
 
         # Update values with voice channel IDs
 
         counters = {
 
-            "Global": 862279824461529098,
-            "Today": 880598351224143892,
+            "Global": global_angel_kills,
+            "Today": daily_angel_kills,
 
         }
 
@@ -37,6 +43,10 @@ class AngelCounter(commands.Cog):
         with open("users.json", "r") as f:
 
             file = json.load(f) 
+
+        with open("global.json", "r") as f:
+
+            file_global = json.load(f)
 
         for i in guild.members:
 
@@ -53,16 +63,17 @@ class AngelCounter(commands.Cog):
 
             global_angels += file[str(i.id)]["angels"]
 
-        if datetime.datetime.now().strftime("%H:%M") == "00:00" or file.get("angels_killed_today") == None:
 
-            file["angels_killed_today"] = 0
+        if datetime.datetime.now().strftime("%H:%M") == "00:00" or file_global.get("angels_killed_today") == None:
 
-            with open("users.json", "w") as f:
+            file_global["angels_killed_today"] = 0
+
+            with open("global.json", "w") as f:
 
                 json.dump(file, f, indent=4)
 
-        killed_today = file["angels_killed_today"]
-
+        killed_today = file_global["angels_killed_today"]
+        
         await self.bot.get_channel(counters["Global"]).edit(name="Angels Killed: {:,}".format(global_angels))
         await self.bot.get_channel(counters["Today"]).edit(name="Killed Today: {:,}".format(killed_today))
         
@@ -94,7 +105,7 @@ class AngelCounter(commands.Cog):
 
             await Angels.increment_angels(ctx, kills)
 
-            await meta.log(f"{ctx.author} killed an angel. They have killed {await Angels.get_angel_count(ctx)} so far.")
+            await meta.log(f"{ctx.author} killed {kills} angel(s). They have killed {await Angels.get_angel_count(ctx)} so far.")
 
 
     @commands.command(
