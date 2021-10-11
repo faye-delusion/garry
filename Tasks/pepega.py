@@ -202,9 +202,5 @@ class Pepega(commands.Cog):
 
                     await meta.log(f"Pepega post by {message.author} blocked.")
 
-
-
-
-
 def setup(bot):
     bot.add_cog(Pepega(bot))
