@@ -13,6 +13,8 @@ from Functions import meta
 guild = 895428129961684993
 global_angel_kills = 895428130062352409
 daily_angel_kills = 896976891863498753
+lb_channel = 895428130385317891
+lb_message = 1
 
 class AngelCounter(commands.Cog):
 
@@ -57,6 +59,7 @@ class AngelCounter(commands.Cog):
                     "xp": 0,
                     "level": 0,
                     "prestige": 0,
+                    "pepega_posts": 0,
                     "angels": 0
 
                 }

@@ -124,4 +124,18 @@ if not os.path.isfile("global.json"):
 
         )
 
+if not os.path.isfile("pepega_tracker.json"):
+
+    print("Generating pepega tracker")
+
+    with open("pepega_tracker.json", "w") as f:
+
+        json.dump(
+
+            {},
+            f,
+            indent=4
+
+        )
+
 print("Setup complete. Run bot.py to start bot.")

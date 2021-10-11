@@ -15,9 +15,7 @@ class test(commands.Cog):
     @commands.is_owner()
     async def test(self,ctx):
 
-        angels = await Angels.get_angel_count(ctx)
-
-        await ctx.send(f"{angels}")
+        await ctx.send(f"e")
 
 
 def setup(bot):
