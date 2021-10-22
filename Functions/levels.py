@@ -25,6 +25,8 @@ async def generate_user_profile(user: discord.User):
 
         }
 
+        await meta.log(f"Generated User Profile for {user}")
+
 async def get_xp_multiplier(user:discord.User):
 
     with open("users.json", "r") as f:
