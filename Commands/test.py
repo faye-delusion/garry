@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from Functions import Angels
+from Functions import levels
 
 # I USE THIS FOR TESTING SHIT
 # IT IS NOT A FEATURE
@@ -15,7 +16,7 @@ class test(commands.Cog):
     @commands.is_owner()
     async def test(self,ctx):
 
-        await ctx.send(f"e")
+        await levels.get_xp_multiplier(ctx.author)
 
 
 def setup(bot):
