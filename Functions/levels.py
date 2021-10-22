@@ -59,12 +59,11 @@ async def get_xp_multiplier(user:discord.User):
 
                 xp_multi += 1 
 
-    
+    # Return XP multiplier from function (functions entire purpose lol)
 
+    return xp_multi
 
-
-
-async def add_xp(xp_amount: int, user: discord.User):
+async def add_xp(user: discord.User, xp_amount: int):
 
     with open("users.json", "r") as f:
 
@@ -76,11 +75,9 @@ async def add_xp(xp_amount: int, user: discord.User):
 
     # Do xp multiplier shite yada yada fuck off
 
+    xp_multiplier = await get_xp_multiplier(user)
 
-
-
-
-
+    xp_amount = xp_amount * xp_multiplier
 
     file[str(user.id)]["xp"] += xp_amount
 

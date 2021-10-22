@@ -7,6 +7,7 @@ from operator import getitem
 from collections import OrderedDict
 
 from Functions import meta
+from Functions import levels
 
 # +++++++++++++++++++++++++++++++++++++++
 #   Channel Configuration Variables (update as required)
@@ -162,6 +163,11 @@ class Pepega(commands.Cog):
                     user_file[str(message.author.id)]["pepega_posts"] += 1 
 
                     await self.bot.get_channel(hall_of_fame_channel).send(f"Submitted by **{message.author.mention}**",embed=embed)
+
+                    # Add 500XP to author for entering Hall Of Fame.
+
+                    await levels.add_xp(message.author, 500)
+
 
                     # add post to tracker
 
