@@ -14,7 +14,7 @@ guild = 895428129961684993
 global_angel_kills = 895428130062352409
 daily_angel_kills = 896976891863498753
 lb_channel = 895428130385317891
-lb_message = 1
+lb_message = 896989923679297556
 
 class AngelCounter(commands.Cog):
 
